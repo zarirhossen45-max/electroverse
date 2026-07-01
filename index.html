@@ -3,30 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElectroVerse - Premium Electronics Learning Platform</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
-    
-    <link rel="stylesheet" href="style.css">
+    <title>ElectroVerse Portal - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #0f111a; color: #e2e8f0; font-family: system-ui, sans-serif; padding-top: 80px; }
+        .custom-nav { background-color: #161925; border-bottom: 1px solid #22293f; }
+        .navbar-brand { color: #3b82f6 !important; font-weight: bold; }
+        .nav-link { color: #94a3b8 !important; }
+        .nav-link.active { color: #ffffff !important; }
+        
+        /* মডার্ন ডিভাইস কার্ড লাউঞ্জ */
+        .device-card {
+            background-color: #161925;
+            border: 1px solid #22293f;
+            border-radius: 14px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .device-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
+        }
+        .device-img { width: 100%; height: 180px; object-fit: cover; border-bottom: 1px solid #22293f; }
+        .device-tag { font-size: 0.75rem; background-color: #1e293b; color: #3b82f6; padding: 4px 10px; border-radius: 20px; font-weight: 600; }
+    </style>
 </head>
-<body class="bg-light">
+<body>
 
-    <nav class="navbar navbar-expand-lg fixed-top shadow-sm bg-white navbar-light">
+    <!-- Top Navigation Bar -->
+    <nav class="navbar navbar-expand-lg fixed-top custom-nav navbar-dark">
         <div class="container">
-            <a class="navbar-brand fw-bold text-primary" href="index.html">
-                <i class="fa-solid fa-microchip me-2"></i>ElectroVerse
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="index.html"><i class="fa-solid fa-microchip me-2"></i>ElectroVerse</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link active fw-semibold" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#categories">Categories</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#featured">Devices</a></li>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About Me</a></li>
                     <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
                 </ul>
@@ -34,45 +48,54 @@
         </div>
     </nav>
 
-    <section class="container text-center" style="margin-top: 120px; min-height: 60vh;">
-        <div class="row justify-content-center">
-            <div class="col-md-10 bg-white p-5 shadow-sm rounded-4 border">
-                <h1 class="display-4 fw-bold text-dark mb-3">Explore the Universe of <span class="text-primary">Electronics</span></h1>
-                <p class="lead text-muted mb-4">Master modern hardware configurations, components, and theoretical insights instantly.</p>
-                
-                <div class="p-2 bg-light rounded-pill border d-flex align-items-center max-w-600 mx-auto">
-                    <i class="fa-solid fa-magnifying-glass text-muted ms-3 me-2"></i>
-                    <input type="text" id="globalSearchInput" class="form-control bg-transparent border-0 shadow-none" placeholder="Search by Name, Brand, Category, or Tags...">
-                </div>
-                <div id="searchResults" class="text-start d-none mt-2 p-3 bg-white border rounded shadow-sm"></div>
-            </div>
+    <!-- Main Dynamic Cards Section -->
+    <div class="container my-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-white">Electronics Devices & Hardware Components</h2>
+            <p class="text-muted">Explore dynamic architectural systems and modern hardware solutions deployed live.</p>
         </div>
-    </section>
 
-    <section id="categories" class="py-5 bg-white border-top">
-        <div class="container text-center">
-            <h3 class="fw-bold mb-4 text-dark">Explore Categories</h3>
-            <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-3" id="categoriesGrid">
-                </div>
+        <!-- এই রো (Row) এর ভেতরে ড্যাশবোর্ডের ডিভাইসগুলো স্বয়ংক্রিয়ভাবে লোড হবে -->
+        <div class="row g-4" id="homeDeviceShowcase">
+            <!-- Dynamic Injection Via LocalStorage -->
         </div>
-    </section>
+    </div>
 
-    <section id="featured" class="py-5">
-        <div class="container">
-            <h3 class="fw-bold text-dark mb-4 text-center text-md-start">Featured Electronics</h3>
-            <div class="row g-4" id="featuredDevicesContainer">
-                </div>
-        </div>
-    </section>
+    <!-- Live Showcase Script Engine -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const showcase = document.getElementById('homeDeviceShowcase');
+            const devices = JSON.parse(localStorage.getItem('electroDevices')) || [];
 
-    <footer class="bg-dark text-white py-4 mt-5 border-top">
-        <div class="container text-center">
-            <p class="mb-1 fw-bold">ElectroVerse &copy; 2026. All Knowledge Systems Reserved.</p>
-            <p class="small text-muted mb-0">Powered securely by HTML5, Bootstrap 5 and Client Local Storage via GitHub Pages.</p>
-        </div>
-    </footer>
+            if(devices.length === 0) {
+                showcase.innerHTML = `
+                    <div class="col-12 text-center py-5">
+                        <i class="fa-solid fa-circle-info text-muted fs-1 mb-3"></i>
+                        <p class="text-muted">No electronics components currently published in the catalog dashboard.</p>
+                    </div>`;
+                return;
+            }
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+            showcase.innerHTML = ''; // ক্লিয়ার ডিফল্ট মেসেজ
+            
+            devices.forEach(dev => {
+                const cardCol = document.createElement('div');
+                cardCol.className = "col-12 col-md-6 col-lg-4";
+                cardCol.innerHTML = `
+                    <div class="device-card h-100 shadow-sm">
+                        <img src="${dev.image}" class="device-img" alt="${dev.name}">
+                        <div class="p-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="device-tag">${dev.tag}</span>
+                            </div>
+                            <h5 class="fw-bold text-white mb-2">${dev.name}</h5>
+                            <p class="text-muted small mb-0" style="line-height: 1.6;">${dev.desc}</p>
+                        </div>
+                    </div>
+                `;
+                showcase.appendChild(cardCol);
+            });
+        });
+    </script>
 </body>
 </html>
