@@ -6,21 +6,91 @@
     <title>About Me - Md. Zikrul Hossen Zarir</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body { background-color: #f8f9fa; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .navbar-brand { font-weight: 700; color: #0d6efd !important; }
-        .profile-card { background: #ffffff; border-radius: 16px; border: 1px solid #e3e6f0; }
-        .profile-img { width: 150px; height: 150px; object-fit: cover; border-radius: 50%; border: 4px solid #0d6efd; }
-        .badge-custom { background-color: rgba(13, 110, 253, 0.1); color: #0d6efd; font-weight: 600; border: none; }
-        footer { background-color: #212529; color: #dee2e6; }
+        /* মডার্ন সাইবারনেটিক ডার্ক গ্রাডিয়েন্ট ব্যাকগ্রাউন্ড */
+        body { 
+            background: radial-gradient(circle at 50% 50%, #1a1f3c 0%, #0b0d19 100%);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #f1f3f9;
+            min-height: 100vh;
+        }
+
+        /* গ্লাস-মরফিজম প্রিমিয়াম নেভিগেশন বার */
+        .glass-nav {
+            background: rgba(11, 13, 25, 0.7) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .navbar-brand, .nav-link { color: #ffffff !important; }
+        .nav-link:hover { color: #3b82f6 !important; }
+
+        /* গ্লাস মরফিজম প্রোফাইল কার্ড স্টাইল */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.15);
+        }
+
+        /* গ্লোয়িং বর্ডারসহ আপনার ফর্মাল পাসপোর্ট সাইজ ছবি */
+        .profile-img { 
+            width: 160px; 
+            height: 160px; 
+            object-fit: cover; 
+            border-radius: 50%; 
+            border: 3px solid #3b82f6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+        }
+
+        /* টেক স্কিলস ব্যাজ ডিজাইন */
+        .badge-tech { 
+            background: rgba(59, 130, 246, 0.15); 
+            color: #60a5fa; 
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 10px;
+        }
+
+        /* থিওরিটিক্যাল ইন্টারেস্ট ব্যাজ ডিজাইন */
+        .badge-theory {
+            background: rgba(168, 85, 247, 0.15);
+            color: #c084fc;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 10px;
+        }
+
+        /* সোশ্যাল গ্লো বাটন */
+        .btn-social {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s;
+        }
+        .btn-social:hover {
+            background: #3b82f6;
+            color: white;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg fixed-top shadow-sm bg-white navbar-light mb-5">
+    <nav class="navbar navbar-expand-lg fixed-top glass-nav navbar-dark shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <i class="fa-solid fa-microchip me-2"></i>ElectroVerse
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fa-solid fa-microchip text-primary me-2"></i>ElectroVerse
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -28,61 +98,62 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="about.html">About Me</a></li>
+                    <li class="nav-item"><a class="nav-link active fw-bold text-primary" href="about.html">About Me</a></li>
                     <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <main class="container" style="margin-top: 100px; min-height: 75vh;">
+    <main class="container" style="margin-top: 120px; min-height: 80vh;">
         <div class="row g-4 justify-content-center">
             
             <div class="col-md-4">
-                <div class="profile-card p-4 text-center shadow-sm">
-                    <img id="displayProfileImg" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=400" alt="Md. Zikrul Hossen Zarir" class="profile-img mb-3 shadow-sm">
-                    <h4 class="fw-bold text-dark mb-1" id="displayProfileName">MD. ZIKRUL HOSSEN ZARIR</h4>
-                    <p class="text-muted small mb-3" id="displayProfileTitle">EEE Student & Hardware Developer</p>
+                <div class="glass-card p-4 text-center">
+                    <img id="displayProfileImg" src="https://lh3.googleusercontent.com/d/1XgXo9wz5Ew0rS_A9o3w5C9VzDk8b4b7S" alt="Md. Zikrul Hossen Zarir" class="profile-img mb-3">
+                    
+                    <h4 class="fw-bold text-white mb-1" id="displayProfileName">MD. ZIKRUL HOSSEN ZARIR</h4>
+                    <p class="text-info small mb-3" id="displayProfileTitle">EEE Student & Hardware Systems Developer</p>
                     
                     <div class="d-flex justify-content-center gap-2 mb-3">
-                        <a id="linkGithub" href="https://github.com/zarirhossen45-max" target="_blank" class="btn btn-outline-dark btn-sm rounded-circle"><i class="fa-brands fa-github"></i></a>
-                        <a id="linkLinkedin" href="#" class="btn btn-outline-primary btn-sm rounded-circle"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a id="linkEmail" href="mailto:zarirhossen45@gmail.com" class="btn btn-outline-danger btn-sm rounded-circle"><i class="fa-solid fa-envelope"></i></a>
+                        <a id="linkGithub" href="https://github.com/zarirhossen45-max" target="_blank" class="btn btn-social btn-sm rounded-circle"><i class="fa-brands fa-github"></i></a>
+                        <a id="linkLinkedin" href="#" class="btn btn-social btn-sm rounded-circle"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a id="linkEmail" href="mailto:zarirhossen45@gmail.com" class="btn btn-social btn-sm rounded-circle"><i class="fa-solid fa-envelope"></i></a>
                     </div>
-                    <hr>
-                    <div class="text-start small">
-                        <p class="mb-1"><strong>Class Roll:</strong> EE-2506035</p>
-                        <p class="mb-1"><strong>Registration No:</strong> 2024731984</p>
-                        <p class="mb-0"><strong>Session:</strong> 2024-2025</p>
+                    <hr class="border-secondary opacity-25">
+                    <div class="text-start small text-muted px-2">
+                        <p class="mb-2"><i class="fa-solid fa-id-badge text-primary me-2"></i><strong>Class Roll:</strong> EE-2506035</p>
+                        <p class="mb-2"><i class="fa-solid fa-file-signature text-primary me-2"></i><strong>Registration No:</strong> 2024731984</p>
+                        <p class="mb-0"><i class="fa-solid fa-calendar-days text-primary me-2"></i><strong>Session:</strong> 2024-2025</p>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-8">
-                <div class="profile-card p-4 shadow-sm h-100">
+                <div class="glass-card p-4 h-100">
                     <h3 class="fw-bold text-primary mb-3"><i class="fa-solid fa-graduation-cap me-2"></i>Academic Profile</h3>
-                    <h5 class="fw-semibold text-dark mb-1" id="displayEducation">National Institute of Textile Engineering and Research (NITER)</h5>
-                    <p class="text-muted mb-4">Constituent Institute of the University of Dhaka (B.Sc. in Electrical and Electronic Engineering)</p>
+                    <h5 class="fw-semibold text-white mb-1" id="displayEducation">National Institute of Textile Engineering and Research (NITER)</h5>
+                    <p class="text-muted small mb-4">Constituent Institute of the University of Dhaka (B.Sc. in Electrical and Electronic Engineering)</p>
                     
-                    <h5 class="fw-bold text-dark mb-2"><i class="fa-solid fa-user me-2 text-secondary"></i>Biography Context</h5>
-                    <p class="text-secondary lead fs-6" id="displayBio">
+                    <h5 class="fw-bold text-white mb-2"><i class="fa-solid fa-user-astronaut me-2 text-info"></i>Biography Context</h5>
+                    <p class="text-muted lead fs-6 lh-lg" id="displayBio">
                         Engineering student enrolled at NITER, actively engaging with advanced Electrical Circuit Analysis techniques, Computer Programming architectures, and experimental scientific models. Dedicated to exploring modern structural systems and hardware solutions.
                     </p>
                     
-                    <h5 class="fw-bold text-dark mb-2 mt-4"><i class="fa-solid fa-gears me-2 text-secondary"></i>Technical Skills Stack</h5>
+                    <h5 class="fw-bold text-white mb-3 mt-4"><i class="fa-solid fa-gears me-2 text-info"></i>Technical Skills Stack</h5>
                     <div id="displaySkills" class="d-flex flex-wrap gap-2 mb-4">
-                        <span class="badge badge-custom p-2 rounded">Electrical Circuits I</span>
-                        <span class="badge badge-custom p-2 rounded">Computer Programming (C)</span>
-                        <span class="badge badge-custom p-2 rounded">HTML5 / CSS3</span>
-                        <span class="badge badge-custom p-2 rounded">Git Version Control</span>
-                        <span class="badge badge-custom p-2 rounded">Mesh & Nodal Analysis</span>
+                        <span class="badge badge-tech">Electrical Circuits I</span>
+                        <span class="badge badge-tech">Computer Programming (C)</span>
+                        <span class="badge badge-tech">HTML5 / CSS3</span>
+                        <span class="badge badge-tech">Git Version Control</span>
+                        <span class="badge badge-tech">Mesh & Nodal Analysis</span>
                     </div>
 
-                    <h5 class="fw-bold text-dark mb-2"><i class="fa-solid fa-atom me-2 text-secondary"></i>Research & Theoretical Interests</h5>
+                    <h5 class="fw-bold text-white mb-3"><i class="fa-solid fa-atom me-2 text-purple" style="color: #c084fc;"></i>Research & Theoretical Interests</h5>
                     <div id="displayInterests" class="d-flex flex-wrap gap-2">
-                        <span class="badge bg-dark-subtle text-dark p-2 rounded">Quantum Physics</span>
-                        <span class="badge bg-dark-subtle text-dark p-2 rounded">Astrophysics Systems</span>
-                        <span class="badge bg-dark-subtle text-dark p-2 rounded">Speculative Science Conceptions</span>
+                        <span class="badge badge-theory">Quantum Physics</span>
+                        <span class="badge badge-theory">Astrophysics Systems</span>
+                        <span class="badge badge-theory">Speculative Science Conceptions</span>
                     </div>
                 </div>
             </div>
@@ -90,15 +161,15 @@
         </div>
     </main>
 
-    <footer class="py-4 mt-5">
+    <footer class="py-4 mt-5 border-top border-secondary border-opacity-10">
         <div class="container text-center">
-            <p class="mb-1 small fw-bold">ElectroVerse Profile Framework &copy; 2026.</p>
+            <p class="mb-0 small text-muted">ElectroVerse Engine &copy; 2026. Custom Premium Glass Theme Configured.</p>
         </div>
     </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // ১. ফাইল থেকে নেওয়া আপনার তথ্যগুলো লোকাল স্টোরেজে ব্যাকআপ হিসেবে ডাইনামিক সিড (Seed) করা
+            // ১. ভেরিফাইড অফিশিয়াল ডাটা অবজেক্ট নোড
             const defaultProfile = {
                 name: "MD. ZIKRUL HOSSEN ZARIR",
                 email: "zarirhossen45@gmail.com",
@@ -108,24 +179,28 @@
                 interests: "Quantum Physics, Astrophysics Systems, Speculative Science",
                 github: "https://github.com/zarirhossen45-max",
                 linkedin: "#",
-                // এটি আপনার অফিশিয়াল ডকুমেন্ট ভেরিফাইড ক্লিপড ইমেজ স্ট্রিং নোড
-                image: "https://avatars.githubusercontent.com/u/190367202?v=4" 
+                // আপনার অফিশিয়াল পাসপোর্ট ফটো ফাইল স্ট্রিম লিঙ্ক
+                image: "https://raw.githubusercontent.com/zarirhossen45-max/electroverse/main/profile-formal.jpg"
             };
 
-            // যদি লোকাল স্টোরেজে আগে থেকে কোনো প্রোফাইল ডাটা না থাকে তবে এটি সেট হবে
             if (!localStorage.getItem('userProfileData')) {
                 localStorage.setItem('userProfileData', JSON.stringify(defaultProfile));
             }
 
-            // ২. লোকাল স্টোরেজ থেকে ডাটা নিয়ে পেজে রেন্ডার করা (অ্যাডমিন প্যানেল থেকে এডিট করলেও এটি অটো আপডেট হবে)
             const currentProfile = JSON.parse(localStorage.getItem('userProfileData')) || defaultProfile;
 
+            // ২. ডাইনামিক ফিল্ড বাইন্ডিং সোর্স
             if(document.getElementById('displayProfileName')) document.getElementById('displayProfileName').innerText = currentProfile.name;
             if(document.getElementById('displayEducation')) document.getElementById('displayEducation').innerText = currentProfile.education;
             if(document.getElementById('displayBio')) document.getElementById('displayBio').innerText = currentProfile.bio;
-            if(document.getElementById('displayProfileImg')) document.getElementById('displayProfileImg').src = currentProfile.image;
             if(document.getElementById('linkGithub')) document.getElementById('linkGithub').href = currentProfile.github;
             if(document.getElementById('linkEmail')) document.getElementById('linkEmail').href = "mailto:" + currentProfile.email;
+            
+            // লোকাল স্টোরেজে যদি কাস্টম ইমেজ আপলোড করা থাকে তবে তা দেখাবে, অন্যথায় আপনার রিয়াল ফটো দেখাবে
+            const imgElement = document.getElementById('displayProfileImg');
+            if(imgElement) {
+                imgElement.src = currentProfile.image && currentProfile.image.startsWith('data:image') ? currentProfile.image : "https://raw.githubusercontent.com/zarirhossen45-max/electroverse/main/profile-formal.jpg";
+            }
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
