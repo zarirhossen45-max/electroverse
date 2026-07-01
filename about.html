@@ -8,106 +8,94 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* সাইবার ডার্ক প্রিমিয়াম ব্যাকগ্রাউন্ড */
+        /* মডার্ন ডার্ক নেভি ব্যাকগ্রাউন্ড */
         body { 
-            background: radial-gradient(circle at 50% 50%, #141829 0%, #090b14 100%);
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            color: #f1f3f9;
-            min-height: 100vh;
-            overflow-y: auto;
+            background-color: #0f111a;
+            color: #e2e8f0;
+            font-family: system-ui, -apple-system, sans-serif;
+            padding-top: 80px;
             padding-bottom: 40px;
         }
 
-        /* গ্লাস মরফিজম নেভিগেশন বার */
-        .glass-nav {
-            background: rgba(9, 11, 20, 0.85) !important;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        /* সিম্পল ও সলিড ডার্ক টপ বার */
+        .custom-nav {
+            background-color: #161925;
+            border-bottom: 1px solid #22293f;
+        }
+        .navbar-brand { color: #3b82f6 !important; font-weight: bold; }
+        .nav-link { color: #94a3b8 !important; }
+        .nav-link.active { color: #ffffff !important; font-weight: 600; }
+
+        /* সলিড মোবাইল ফ্রেন্ডলি কার্ড (যা হাইড হবে না) */
+        .profile-box {
+            background-color: #161925;
+            border: 1px solid #22293f;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
         }
 
-        /* রেসপনসিভ গ্লাস কার্ড (কোনো ফিক্সড হাইট নেই) */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 24px;
-            height: auto;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-
-        /* প্রফেশনাল ইমেজ ফ্রেম ও সাইবার গ্লো */
-        .img-container {
-            width: 150px;
-            height: 150px;
+        /* প্রোফাইল ইমেজ কন্টেইনার ফিক্স */
+        .avatar-container {
+            width: 130px;
+            height: 130px;
             margin: 0 auto 15px auto;
         }
-        .profile-img { 
+        .user-avatar { 
             width: 100%; 
             height: 100%; 
             object-fit: cover; 
             border-radius: 50%; 
             border: 3px solid #3b82f6;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+            background-color: #1e293b;
+        }
+
+        /* স্কিলস এবং ক্যাটাগরি ব্যাজ ব্লক (ওভারল্যাপ প্রতিরোধক) */
+        .tag-group {
             display: block;
-        }
-
-        /* ব্যাজ কন্টেইনার ও রেসপনসিভ গ্যাপ */
-        .badge-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
             margin-top: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
-
-        .badge-tech { 
-            background: rgba(59, 130, 246, 0.15); 
-            color: #60a5fa; 
-            border: 1px solid rgba(59, 130, 246, 0.25);
+        .custom-tag { 
+            display: inline-block;
+            background-color: #1e293b; 
+            color: #3b82f6; 
+            border: 1px solid #334155;
             font-weight: 500;
             padding: 6px 12px;
+            margin: 4px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+        .theory-tag {
+            display: inline-block;
+            background-color: #2e1065; 
+            color: #c084fc; 
+            border: 1px solid #4c1d95;
+            font-weight: 500;
+            padding: 6px 12px;
+            margin: 4px;
             border-radius: 8px;
             font-size: 0.85rem;
         }
 
-        .badge-theory {
-            background: rgba(168, 85, 247, 0.15);
-            color: #c084fc;
-            border: 1px solid rgba(168, 85, 247, 0.25);
-            font-weight: 500;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-        }
-
-        .btn-social {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            width: 36px;
-            height: 36px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: all 0.2s;
+        /* সোশ্যাল বাটন লিংক */
+        .social-icon {
+            color: #94a3b8;
+            font-size: 1.2rem;
+            margin: 0 8px;
             text-decoration: none;
         }
-        .btn-social:hover {
-            background: #3b82f6;
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-        }
+        .social-icon:hover { color: #3b82f6; }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg fixed-top glass-nav navbar-dark shadow-sm">
+    <nav class="navbar navbar-expand-lg fixed-top custom-nav navbar-dark shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">
-                <i class="fa-solid fa-microchip text-primary me-2"></i>ElectroVerse
+            <a class="navbar-brand" href="index.html">
+                <i class="fa-solid fa-microchip me-2"></i>ElectroVerse
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -115,18 +103,106 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active fw-bold text-primary" href="about.html">About Me</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="about.html">About Me</a></li>
                     <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <main class="container" style="margin-top: 100px;">
-        <div class="row g-4 justify-content-center">
+    <main class="container" style="margin-top: 30px;">
+        <div class="row">
             
-            <div class="col-lg-4 col-md-5">
-                <div class="glass-card text-center">
-                    <div class="img-container">
-                        <img id="displayProfileImg" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/2wBDAQMDAwQDBAgEBAgQCwkLEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBD/wAARCADIAYADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usf4693l5u7v2H7cedg4XL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usf4693l5u7v2H7cedg4XL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZnaGlqc3R1dnd4eXqGhcXGHR0UGh0eHh0dEhIZCR0hJDNKShUXGRYWGhgcHOJPVGp0NXRlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usf4693l5u7v2H7cedg4XL/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAAACP/aAAwDAQACEQMRAD8A/Sbeo6g0edH6mnbVPUCjYvoKAGebH70
-                            
+            <div class="col-12 col-md-4">
+                <div class="profile-box text-center">
+                    <div class="avatar-container">
+                        <img id="displayProfileImg" src="https://avatars.githubusercontent.com/u/190367202?v=4" alt="Zarir Profile" class="user-avatar">
+                    </div>
+                    
+                    <h4 class="fw-bold text-white mb-1" id="displayProfileName">MD. ZIKRUL HOSSEN ZARIR</h4>
+                    <p class="text-info small mb-3">EEE Student & Hardware Developer</p>
+                    
+                    <div class="mb-3">
+                        <a id="linkGithub" href="https://github.com/zarirhossen45-max" target="_blank" class="social-icon"><i class="fa-brands fa-github"></i></a>
+                        <a id="linkEmail" href="mailto:zarirhossen45@gmail.com" class="social-icon"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
+                    <hr class="border-secondary opacity-25">
+                    <div class="text-start small text-muted px-2">
+                        <p class="mb-2"><i class="fa-solid fa-id-badge text-primary me-2"></i><strong>Class Roll:</strong> EE-2506035</p>
+                        <p class="mb-2"><i class="fa-solid fa-file-signature text-primary me-2"></i><strong>Registration No:</strong> 2024731984</p>
+                        <p class="mb-0"><i class="fa-solid fa-calendar-days text-primary me-2"></i><strong>Session:</strong> 2024-2025</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-8">
+                <div class="profile-box">
+                    <h4 class="fw-bold text-primary mb-2"><i class="fa-solid fa-graduation-cap me-2"></i>Academic Profile</h4>
+                    <h6 class="text-white mb-1" id="displayEducation">National Institute of Textile Engineering and Research (NITER)</h6>
+                    <p class="text-muted small mb-4">Constituent Institute of the University of Dhaka (B.Sc. in Electrical and Electronic Engineering)</p>
+                    
+                    <h5 class="fw-bold text-white mb-2"><i class="fa-solid fa-user me-2 text-info"></i>Biography Context</h5>
+                    <p class="text-muted small lh-lg mb-4" id="displayBio">
+                        Engineering student enrolled at NITER, actively engaging with advanced Electrical Circuit Analysis techniques, Computer Programming architectures, and experimental scientific models. Dedicated to exploring modern structural systems and hardware solutions.
+                    </p>
+                    
+                    <h5 class="fw-bold text-white mb-2"><i class="fa-solid fa-gears me-2 text-info"></i>Technical Skills Stack</h5>
+                    <div id="displaySkills" class="tag-group">
+                        <span class="custom-tag">Electrical Circuits I</span>
+                        <span class="custom-tag">Computer Programming (C)</span>
+                        <span class="custom-tag">HTML5 / CSS3</span>
+                        <span class="custom-tag">Git Version Control</span>
+                        <span class="custom-tag">Mesh & Nodal Analysis</span>
+                    </div>
+
+                    <h5 class="fw-bold text-white mb-2"><i class="fa-solid fa-atom me-2 style="color: #c084fc;"></i>Research & Theoretical Interests</h5>
+                    <div id="displayInterests" class="tag-group">
+                        <span class="theory-tag">Quantum Physics</span>
+                        <span class="theory-tag">Astrophysics Systems</span>
+                        <span class="theory-tag">Speculative Science</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="py-4 text-center border-top border-secondary border-opacity-10 mt-4">
+        <p class="mb-0 small text-muted">ElectroVerse Engine &copy; 2026. All Elements Restored.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const defaultProfile = {
+                name: "MD. ZIKRUL HOSSEN ZARIR",
+                email: "zarirhossen45@gmail.com",
+                education: "National Institute of Textile Engineering and Research (NITER)",
+                bio: "Engineering student enrolled at NITER, actively engaging with advanced Electrical Circuit Analysis techniques, Computer Programming architectures, and experimental scientific models. Dedicated to exploring modern structural systems and hardware solutions.",
+                github: "https://github.com/zarirhossen45-max",
+                image: "https://avatars.githubusercontent.com/u/190367202?v=4"
+            };
+
+            // লোকাল স্টোরেজ চেক এবং সিড অবজেক্ট রাইট লজিক
+            if (!localStorage.getItem('userProfileData')) {
+                localStorage.setItem('userProfileData', JSON.stringify(defaultProfile));
+            }
+
+            const currentProfile = JSON.parse(localStorage.getItem('userProfileData')) || defaultProfile;
+
+            // ভ্যালু বাইন্ডিং এসাইনমেন্ট
+            if(document.getElementById('displayProfileName')) document.getElementById('displayProfileName').innerText = currentProfile.name;
+            if(document.getElementById('displayEducation')) document.getElementById('displayEducation').innerText = currentProfile.education;
+            if(document.getElementById('displayBio')) document.getElementById('displayBio').innerText = currentProfile.bio;
+            if(document.getElementById('linkGithub')) document.getElementById('linkGithub').href = currentProfile.github;
+            if(document.getElementById('linkEmail')) document.getElementById('linkEmail').href = "mailto:" + currentProfile.email;
+            
+            // ফটো ফলব্যাক রেন্ডারিং
+            const imgElement = document.getElementById('displayProfileImg');
+            if(imgElement) {
+                imgElement.src = currentProfile.image && currentProfile.image.startsWith('data:image') ? currentProfile.image : defaultProfile.image;
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
