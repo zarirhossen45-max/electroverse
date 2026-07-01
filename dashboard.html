@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroVerse Control Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar bg-body-tertiary border-end min-vh-100">
+                <div class="position-sticky pt-3 px-2">
+                    <h5 class="fw-bold px-3 mb-4 text-primary"><i class="fa-solid fa-gauge me-2"></i>Control Hub</h5>
+                    <ul class="nav flex-column gap-1" id="dashboardNavTabs">
+                        <li class="nav-item"><a class="nav-link active" href="#" onclick="switchTab('overview')"><i class="fa-solid fa-chart-pie me-2"></i>Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" onclick="switchTab('aboutMeAdmin')"><i class="fa-solid fa-user-gear me-2"></i>About Me Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" onclick="switchTab('uploadDevice')"><i class="fa-solid fa-cloud-arrow-up me-2"></i>Upload Device</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" onclick="switchTab('manageDevices')"><i class="fa-solid fa-list-check me-2"></i>Manage Catalog</a></li>
+                        <li class="nav-item"><hr class="my-2"></li>
+                        <li class="nav-item"><a class="nav-link text-danger" href="#" onclick="adminLogout()"><i class="fa-solid fa-power-off me-2"></i>Logout</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+                
+                <div id="tab-overview" class="db-tab-content">
+                    <h2 class="fw-bold mb-4">Operational Status Engine Summary Metrics</h2>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="p-4 rounded shadow-sm glass-card text-primary">
+                                <h5>Total Registered Components</h5>
+                                <h2 class="fw-bold id" id="dbCountDevices">0</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-aboutMeAdmin" class="db-tab-content d-none">
+                    <h2 class="fw-bold mb-4">Edit Profile Context Configuration Parameters</h2>
+                    <form id="profileEditForm" onsubmit="saveProfileAdmin(event)">
+                        <div class="row g-3">
+                            <div class="col-md-6"><label class="form-label">Full Profile Legal Representation Name</label><input type="text" id="profName" class="form-control" required></div>
+                            <div class="col-md-6"><label class="form-label">Contact Endpoint Mail Anchor</label><input type="email" id="profEmail" class="form-control" required></div>
+                            <div class="col-12"><label class="form-label">Academic Profile Mapping & Education Credentials</label><input type="text" id="profEdu" class="form-control" required></div>
+                            <div class="col-12"><label class="form-label">Biographical Context Summarization Vector String</label><textarea id="profBio" class="form-control" rows="3" required></textarea></div>
+                            <div class="col-md-6"><label class="form-label">Skills Stack Tokens (Comma Segmented)</label><input type="text" id="profSkills" class="form-control" required></div>
+                            <div class="col-md-6"><label class="form-label">Research Mapping Interests (Comma Segmented)</label><input type="text" id="profInterests" class="form-control" required></div>
+                            <div class="col-md-4"><label class="form-label">GitHub URL Endpoint</label><input type="url" id="profGit" class="form-control"></div>
+                            <div class="col-md-4"><label class="form-label">LinkedIn Identification Link Node</label><input type="url" id="profIn" class="form-control"></div>
+                            <div class="col-md-4"><label class="form-label">Personal Website Canonical Pointer Link</label><input type="url" id="profWeb" class="form-control"></div>
+                            <div class="col-12"><button type="submit" class="btn btn-primary px-4">Commit Vector to Storage</button></div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="tab-uploadDevice" class="db-tab-content d-none">
+                    <h2 class="fw-bold mb-4" id="uploadTitle">Register Novel Hardware Node Profile</h2>
+                    <form id="deviceUploadForm" onsubmit="handleDeviceSubmission(event)">
+                        <input type="hidden" id="editDeviceId">
+                        <div class="row g-3">
+                            <div class="col-md-4"><label class="form-label">Device Hardware Name Descriptor</label><input type="text" id="devName" class="form-control" required></div>
+                            <div class="col-md-4"><label class="form-label">Manufacturing Brand OEM Identification</label><input type="text" id="devBrand" class="form-control" required></div>
+                            <div class="col-md-4">
+                                <label class="form-label">Architecture Core Target Category Grid</label>
+                                <select id="devCategory" class="form-select" required></select>
+                            </div>
+                            <div class="col-md-4"><label class="form-label">Structural Model Sequence Token</label><input type="text" id="devModel" class="form-control" required></div>
+                            <div class="col-md-4"><label class="form-label">Production Framework Deployment Release Year</label><input type="number" id="devYear" class="form-control" required></div>
+                            <div class="col-md-4"><label class="form-label">Hardware Schematic / Node Profile Image Stream</label><input type="file" id="devImgFile" class="form-control" accept="image/*"></div>
+                            <div class="col-md-4"><label class="form-label">Operating Absolute Direct DC Voltage Rating</label><input type="text" id="devVoltage" class="form-control" placeholder="e.g. 5V / 12V DC" required></div>
+                            <div class="col-md-4"><label class="form-label">Wattage Power Load Structural Capacity Requirement</label><input type="text" id="devPower" class="form-control" placeholder="e.g. 2W" required></div>
+                            <div class="col-md-4"><label class="form-label">Economic Asset Evaluation Matrix Cost Value Pricing</label><input type="text" id="devPrice" class="form-control" placeholder="e.g. 450 BDT" required></div>
+                            <div class="col-md-6"><label class="form-label">Index Target Engine Tag Tokens (Comma Separated)</label><input type="text" id="devTags" class="form-control" placeholder="e.g. MCU, AVR, Embedded"></div>
+                            <div class="col-md-6"><label class="form-label">Video Demonstration / Simulation Hyperlink Reference</label><input type="url" id="devVideo" class="form-control"></div>
+                            <div class="col-12"><label class="form-label">Extended Operational Context Narrative Description</label><textarea id="devDesc" class="form-control" rows="3" required></textarea></div>
+                            <div class="col-md-4"><label class="form-label">System Performance Feature List</label><textarea id="devFeatures" class="form-control" rows="3"></textarea></div>
+                            <div class="col-md-4"><label class="form-label">Architectural Strategic Engineering Advantages</label><textarea id="devAdv" class="form-control" rows="3"></textarea></div>
+                            <div class="col-md-4"><label class="form-label">System Performance Functional Bottlenecks & Drawbacks</label><textarea id="devDisadv" class="form-control" rows="3"></textarea></div>
+                            <div class="col-12"><label class="form-label">Real-world Operational Application Profiles</label><textarea id="devApps" class="form-control" rows="2"></textarea></div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-success px-5" id="btnSubmitDevice">Commit Specs to Matrix</button>
+                                <button type="button" class="btn btn-secondary ms-2" onclick="resetDeviceForm()">Clear Active Parameters</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="tab-manageDevices" class="db-tab-content d-none">
+                    <h2 class="fw-bold mb-4">Master Datastore Grid Control Operations</h2>
+                    <div class="table-responsive glass-card rounded p-3">
+                        <table class="table table-striped align-middle" id="adminDevicesTable">
+                            <thead>
+                                <tr>
+                                    <th>Schematic Image</th>
+                                    <th>Component Name</th>
+                                    <th>Category Context</th>
+                                    <th>Brand Label</th>
+                                    <th>Price Valuation</th>
+                                    <th>Action Framework Anchors</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminDevicesTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+  </html>
+  
