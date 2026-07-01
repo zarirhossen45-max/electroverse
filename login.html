@@ -101,32 +101,20 @@
             <button type="submit" class="btn-submit-custom">Initialize Credentials</button>
         </form>
     </div>
-
-    <!-- Cryptographic Verification Engine Engine -->
+    <!-- Cryptographic Verification Engine Script -->
     <script>
-        // SHA-256 হ্যাশিং ফাংশন (প্লেইন টেক্সট কোড থেকে সরানোর জন্য)
-        async function generateHash(string) {
-            const msgBuffer = new TextEncoder().encode(string);                    
-            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-        }
-
-        document.getElementById('gatewayLoginForm').addEventListener('submit', async function(e) {
+        document.getElementById('gatewayLoginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const userInput = document.getElementById('gatewayUser').value.trim();
-            const passInput = document.getElementById('gatewayPass').value;
+            const passInput = document.getElementById('gatewayPass').value.trim();
 
-            // ইনপুটের ওপর ভিত্তি করে হ্যাশ জেনারেট করা
-            const userHash = await generateHash(userInput);
-            const passHash = await generateHash(passInput);
+            // ইনপুটগুলোকে এনকোড করে কোডের সাথে মেলানো হচ্ছে (যাতে কেউ সরাসরি পাসওয়ার্ড না দেখে)
+            const encodedUser = btoa(userInput);
+            const encodedPass = btoa(passInput);
 
-            // কোডের ভেতরে আসল টেক্সট নেই, শুধু ম্যাচিং হ্যাশ ভ্যালু রয়েছে
-            const targetUserHash = "60bf803b9b47e52b22b64dd8b17ec1e905dff324a3cfb5773199c9ca3364f7b4"; // zarir5806 এর হ্যাশ
-            const targetPassHash = "9d90ec82813589b91739c3e3871bf2c611bd902da7fc98b94f6f71b12b6df5f1"; // 580641 এর হ্যাশ
-
-            if (userHash === targetUserHash && passHash === targetPassHash) {
+            // 'emFyaXI1ODA2' হলো zarir5806 এবং 'NTgwNjQx' হলো 580641 এর এনকোডেড রূপ
+            if (encodedUser === "emFyaXI1ODA2" && encodedPass === "NTgwNjQx") {
                 localStorage.setItem('isAdminAuthenticated', 'true');
                 window.location.href = 'dashboard.html';
             } else {
@@ -137,5 +125,6 @@
             }
         });
     </script>
+    
 </body>
 </html>
