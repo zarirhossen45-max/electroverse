@@ -1,57 +1,117 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElectroVerse - Secure Admin Verification Gateway</title>
+    <title>Admin Access Gateway - ElectroVerse</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        body {
+            background-color: #0f111a;
+            color: #e2e8f0;
+            font-family: system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .login-card {
+            background-color: #161925;
+            border: 1px solid #22293f;
+            border-radius: 16px;
+            padding: 30px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7);
+        }
+        .brand-icon {
+            font-size: 2.5rem;
+            color: #3b82f6;
+            margin-bottom: 15px;
+        }
+        .form-control {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            color: #ffffff;
+            padding: 12px;
+            border-radius: 10px;
+        }
+        .form-control:focus {
+            background-color: #1e293b;
+            border-color: #3b82f6;
+            color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+        }
+        .btn-login {
+            background-color: #3b82f6;
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            width: 100%;
+            border: none;
+            transition: all 0.2s;
+        }
+        .btn-login:hover {
+            background-color: #2563eb;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+        }
+        .text-muted-custom {
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+    </style>
 </head>
-<body class="bg-light-subtle d-flex align-items-center min-vh-100">
+<body>
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-5">
-                <div class="text-center mb-4">
-                    <a href="index.html" class="h2 text-decoration-none fw-bold text-body"><i class="fa-solid fa-microchip text-primary me-2"></i>ElectroVerse</a>
-                </div>
-                <div class="card glass-card border-0 p-4 shadow rounded-4">
-                    <h3 class="fw-bold mb-3 text-center">Admin Access Gateway</h3>
-                    <form id="adminLoginForm" onsubmit="executeAdminLogin(event)">
-                        <div class="mb-3">
-                            <label class="form-label">Username Descriptor</label>
-                            <input type="text" id="loginUser" class="form-control" placeholder="Default: admin" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Secure Access Key Pass token</label>
-                            <input type="password" id="loginPass" class="form-control" placeholder="Default: admin123" required>
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="rememberMe">
-                            <label class="form-check-label" for="rememberMe">Remember Authentication Token</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100 py-2">Initialize Credentials</button>
-                    </form>
+    <div class="login-card text-center">
+        <div class="brand-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <h4 class="fw-bold text-white mb-1">Admin Access Gateway</h4>
+        <p class="text-muted-custom mb-4">Secure Cryptographic System Authentication</p>
+        
+        <div id="alertBox" class="alert alert-danger d-none py-2 px-3 small text-start" role="alert"></div>
+
+        <form id="loginEngineForm">
+            <div class="mb-3 text-start">
+                <label class="form-label small fw-semibold text-muted">Username Descriptor</label>
+                <input type="text" id="inputUser" class="form-control" placeholder="Default: zarir5806" required autocomplete="off">
+            </div>
+            <div class="mb-3 text-start">
+                <label class="form-label small fw-semibold text-muted">Secure Access Key Token</label>
+                <div class="position-relative">
+                    <input type="password" id="inputPass" class="form-control" placeholder="Default: 580641" required>
                 </div>
             </div>
-        </div>
+            <div class="mb-4 text-start form-check">
+                <input type="checkbox" class="form-check-input" id="rememberToken" checked>
+                <label class="form-check-label small text-muted" for="rememberToken">Remember Authentication Token</label>
+            </div>
+            <button type="submit" class="btn-login">Initialize Credentials</button>
+        </form>
     </div>
 
     <script>
-        function executeAdminLogin(e) {
+        document.getElementById('loginEngineForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const u = document.getElementById('loginUser').value.trim();
-            const p = document.getElementById('loginPass').value.trim();
-            
-            if(u === 'admin' && p === 'admin123') {
-                localStorage.setItem('adminSessionActive', 'true');
+            const user = document.getElementById('inputUser').value.trim();
+            const pass = document.getElementById('inputPass').value.trim();
+            const alertBox = document.getElementById('alertBox');
+
+            // সেট করা নতুন প্রফেশনাল সিকিউর ভ্যালিডেশন
+            if (user === "zarir5806" && pass === "580641") {
+                localStorage.setItem('isAdminAuthenticated', 'true');
+                alertBox.classList.add('d-none');
                 window.location.href = 'dashboard.html';
             } else {
-                alert('Invalid operational signature input credentials.');
+                alertBox.innerText = "Invalid credentials. Gateway authorization rejected.";
+                alertBox.classList.remove('d-none');
             }
-        }
+        });
     </script>
 </body>
 </html>
-
