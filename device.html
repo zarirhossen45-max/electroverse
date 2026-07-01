@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroVerse - Electronics Node Specification Viewer Matrix</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="py-5">
+
+    <div class="container mt-4">
+        <div class="mb-4">
+            <a href="index.html" class="btn btn-outline-secondary rounded-pill"><i class="fa-solid fa-arrow-left me-2"></i>Back to Interface Overview</a>
+        </div>
+        
+        <div id="deviceDetailsContainer"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            const devices = JSON.parse(localStorage.getItem('electronicsDevices')) || [];
+            const d = devices.find(item => item.id === id);
+
+            const container = document.getElementById('deviceDetailsContainer');
+            if(!d) {
+                container.innerHTML = `<div class="alert alert-danger">Requested technical infrastructure configuration signature missing from localized registers index dataset pointers.</div>`;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="row g-5">
+                    <div class="col-md-5">
+                        <div class="glass-card p-3 rounded shadow-sm text-center">
+                            <img src="${d.image}" class="img-fluid rounded shadow object-fit-contain w-100" style="max-height: 400px;" alt="${d.name}">
+                        </div>
+                        <div class="mt-4 d-grid gap-2">
+                            <button class="btn btn-primary" onclick="navigator.clipboard.writeText(window.location.href); alert('Platform URI reference token mirrored to system local buffer stack board.');"><i class="fa-solid fa-share-nodes me-2"></i>Copy Share Node Link</button>
+                            ${d.videoLink ? `<a href="${d.videoLink}" target="_blank" class="btn btn-danger"><i class="fa-brands fa-youtube me-2"></i>Launch Video Analysis Stream</a>` : ''}
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <span class="badge bg-primary p-2 mb-2 fs-6">${d.category}</span>
+                        <h1 class="fw-bold display-5 mb-1">${d.name}</h1>
+                        <p class="text-muted fs-5 mb-4">Manufacturer Matrix Domain: <strong class="text-body">${d.brand}</strong> | Release Sequence: <strong class="text-body">${d.releaseYear}</strong></p>
+                        
+                        <h4 class="fw-bold text-success mb-4">Standard Estimated Cost Token Value: ${d.price}</h4>
+                        
+                        <h5 class="fw-bold mb-2">Operational Functional Summary Narrative</h5>
+                        <p class="text-muted mb-4">${d.description}</p>
+                        
+                        <h5 class="fw-bold mb-3">Electrical Domain Boundary Constraint Matrix</h5>
+                        <div class="table-responsive glass-card rounded mb-4">
+                            <table class="table table-bordered m-0">
+                                <thead class="table-light"><tr><th>Parameter Metrics Reference Field</th><th>Structural Rating Values</th></tr></thead>
+                                <tbody>
+                                    [span_11](start_span)<tr><td>Absolute Threshold Internal Potential Line Input Voltage Rating[span_11](end_span)</td><td><strong>${d.voltage}</strong></td></tr>
+                                    [span_12](start_span)<tr><td>System Consumption Rate Power Factor Metric[span_12](end_span)</td><td><strong>${d.power}</strong></td></tr>
+                                    <tr><td>Architecture Hardware Model Series Pointer Identifier</td><td><strong>${d.model}</strong></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="p-3 bg-light rounded shadow-sm h-100 border-start border-4 border-success">
+                                    <h6 class="fw-bold text-success"><i class="fa-solid fa-circle-check me-2"></i>System Integration Advantages</h6>
+                                    <p class="small text-muted mb-0">${d.advantages || 'Not specified'}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-3 bg-light rounded shadow-sm h-100 border-start border-4 border-danger">
+                                    <h6 class="fw-bold text-danger"><i class="fa-solid fa-triangle-exclamation me-2"></i>Architecture Drawbacks</h6>
+                                    <p class="small text-muted mb-0">${d.disadvantages || 'Not specified'}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
