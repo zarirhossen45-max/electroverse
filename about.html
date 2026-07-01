@@ -26,14 +26,24 @@
         .nav-link { color: #94a3b8 !important; }
         .nav-link.active { color: #ffffff !important; font-weight: 600; }
 
-        /* মোবাইল ব্রাউজার বুলেট ওভাররাইড ফিক্স */
-        .navbar-nav {
+        /* মোবাইল ব্রাউজার বুলেট এবং লেআউট ফিক্স */
+        nav ul, .navbar-nav, .nav-item {
             list-style: none !important;
+            list-style-type: none !important;
             padding-left: 0 !important;
             margin: 0 !important;
         }
-        .navbar-nav .nav-item {
-            list-style-type: none !important;
+        .navbar-nav {
+            display: flex !important;
+            flex-direction: row !important;
+            gap: 15px !important;
+        }
+        .navbar-toggler {
+            display: none !important; /* ভাঙা মোবাইল টগলার হাইড করা হয়েছে */
+        }
+        .navbar-collapse {
+            display: flex !important;
+            flex-basis: auto !important;
         }
 
         /* সলিড মোবাইল ফ্রেন্ডলি কার্ড (যা হাইড হবে না) */
@@ -107,10 +117,7 @@
             <a class="navbar-brand" href="index.html">
                 <i class="fa-solid fa-microchip me-2"></i>ElectroVerse
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link active" href="about.html">About Me</a></li>
@@ -206,10 +213,10 @@
             if(document.getElementById('linkGithub')) document.getElementById('linkGithub').href = currentProfile.github;
             if(document.getElementById('linkEmail')) document.getElementById('linkEmail').href = "mailto:" + currentProfile.email;
             
-            // ফটো ফলব্যাক রেন্ডারিং
+            // ফটো রেন্ডারিং ফিক্স
             const imgElement = document.getElementById('displayProfileImg');
             if(imgElement) {
-                imgElement.src = currentProfile.image && currentProfile.image.startsWith('data:image') ? currentProfile.image : defaultProfile.image;
+                imgElement.src = currentProfile.image ? currentProfile.image : defaultProfile.image;
             }
         });
     </script>
