@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control Hub Engine Summary - ElectroVerse</title>
+    <title>Electronics Inventory Control - ElectroVerse</title>
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -65,7 +67,6 @@
             border: 1px solid #334155;
             border-radius: 12px;
             padding: 15px;
-            text-center;
         }
         .btn-action-save {
             background-color: #3b82f6;
@@ -77,13 +78,20 @@
             transition: background 0.2s;
         }
         .btn-action-save:hover { background-color: #2563eb; }
+        .table-dark-custom {
+            background-color: #161925;
+            color: #e2e8f0;
+        }
+        .table-dark-custom th { color: #94a3b8; border-bottom: 2px solid #22293f; }
+        .table-dark-custom td { border-bottom: 1px solid #22293f; vertical-align: middle; }
     </style>
 </head>
 <body>
 
+    <!-- Header Block -->
     <header class="py-3 px-4 border-bottom border-secondary border-opacity-10 mb-4" style="background-color: #161925;">
         <div class="d-flex justify-content-between align-items-center">
-            <h5 class="mb-0 fw-bold text-white"><i class="fa-solid fa-sliders text-primary me-2"></i>Control Hub</h5>
+            <h5 class="mb-0 fw-bold text-white"><i class="fa-solid fa-microchip text-primary me-2"></i>ElectroVerse Control Hub</h5>
             <button onclick="logoutEngine()" class="btn btn-sm btn-outline-danger px-3"><i class="fa-solid fa-power-off me-1"></i>Logout</button>
         </div>
     </header>
@@ -91,67 +99,78 @@
     <main class="container-fluid px-4">
         <div class="row g-4">
             
+            <!-- Sidebar Navigation Area -->
             <div class="col-12 col-md-3">
                 <div class="sidebar-node shadow-sm">
                     <p class="text-muted small fw-bold text-uppercase mb-2">Navigation Engine</p>
                     <nav>
-                        <a href="#" class="nav-custom-link active"><i class="fa-solid fa-chart-line me-2"></i>Dashboard Summary</a>
+                        <a href="#" class="nav-custom-link active"><i class="fa-solid fa-plus me-2"></i>Add Devices</a>
                         <a href="about.html" class="nav-custom-link"><i class="fa-solid fa-user me-2"></i>View Profile Page</a>
                         <a href="index.html" class="nav-custom-link"><i class="fa-solid fa-house me-2"></i>Home Portal</a>
                     </nav>
 
                     <hr class="border-secondary opacity-25 my-3">
                     
-                    <p class="text-muted small fw-bold text-uppercase mb-2">Status Metrics</p>
+                    <p class="text-muted small fw-bold text-uppercase mb-2">Inventory Summary</p>
                     <div class="metric-badge text-center">
-                        <span class="text-muted small d-block">Total Registered Elements</span>
-                        <h3 class="fw-bold text-primary mb-0 mt-1">124 GB</h3>
+                        <span class="text-muted small d-block">Active Electronics Listed</span>
+                        <h3 class="fw-bold text-primary mb-0 mt-1" id="deviceCount">0</h3>
                     </div>
                 </div>
             </div>
 
+            <!-- Configuration Parameters Module -->
             <div class="col-12 col-md-9">
-                <div class="main-panel-card shadow-sm">
-                    <h4 class="text-white fw-bold mb-1">Edit Profile Context Config</h4>
-                    <p class="text-muted small mb-4">Dynamically alter parameters served to the local context matrix.</p>
+                <div class="main-panel-card shadow-sm mb-4">
+                    <h4 class="text-white fw-bold mb-1">Add New Electronics Device</h4>
+                    <p class="text-muted small mb-4">Input specifications and images to dynamically update the home showcase matrix.</p>
                     
                     <div id="saveSuccessAlert" class="alert alert-success d-none py-2 small" role="alert">
-                        <i class="fa-solid fa-circle-check me-1"></i> Configuration values pushed to core state storage engine successfully!
+                        <i class="fa-solid fa-circle-check me-1"></i> Device successfully pushed to home catalog matrix!
                     </div>
 
-                    <form id="profileStateConfigForm">
+                    <form id="deviceConfigForm">
                         <div class="row">
                             <div class="col-md-6">
-                                <label class="form-label-custom">Full Profile Legal Representation Name</label>
-                                <input type="text" id="cfgName" class="form-control-custom" required>
+                                <label class="form-label-custom">Device Name</label>
+                                <input type="text" id="devName" class="form-control-custom" placeholder="e.g., Oscilloscope, Arduino Uno" required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label-custom">Contact Endpoint Mail Anchor</label>
-                                <input type="email" id="cfgEmail" class="form-control-custom" required>
+                                <label class="form-label-custom">Device Category / Tag</label>
+                                <input type="text" id="devTag" class="form-control-custom" placeholder="e.g., Hardware, Measuring Tool" required>
                             </div>
                         </div>
 
-                        <label class="form-label-custom">Academic Profile Mapping & Education Credentials</label>
-                        <input type="text" id="cfgEdu" class="form-control-custom" required>
+                        <label class="form-label-custom">Device Description & Specifications</label>
+                        <textarea id="devDesc" class="form-control-custom" rows="3" style="resize: none;" placeholder="Provide complete technical features or project scope context..." required></textarea>
 
-                        <label class="form-label-custom">Biographical Context Summarization Vector String</label>
-                        <textarea id="cfgBio" class="form-control-custom" rows="3" style="resize: none;" required></textarea>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label class="form-label-custom">GitHub URL Endpoint Node</label>
-                                <input type="url" id="cfgGithub" class="form-control-custom" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label-custom">Profile Image URL/Blob Path</label>
-                                <input type="url" id="cfgImage" class="form-control-custom" placeholder="https://example.com/avatar.jpg">
-                            </div>
-                        </div>
+                        <label class="form-label-custom">Device Image URL Path</label>
+                        <input type="url" id="devImage" class="form-control-custom" placeholder="https://images.unsplash.com/... or any image link" required>
 
                         <div class="text-end mt-2">
-                            <button type="submit" class="btn-action-save shadow-sm">Commit Changes to Engine</button>
+                            <button type="submit" class="btn-action-save shadow-sm"><i class="fa-solid fa-cloud-arrow-up me-1"></i>Publish Device</button>
                         </div>
                     </form>
+                </div>
+
+                <!-- Live Inventory List Table -->
+                <div class="main-panel-card shadow-sm">
+                    <h5 class="text-white fw-bold mb-3"><i class="fa-solid fa-list me-2 text-info"></i>Current Electronics Catalogue</h5>
+                    <div class="table-responsive">
+                        <table class="table table-dark-custom mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Preview</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="deviceTableBody">
+                                <!-- Dynamic Rows -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -159,49 +178,72 @@
     </main>
 
     <script>
-        // সিকিউরিটি লকআউট গেটওয়ে চেক
+        // সিকিউরিটি লগআউট গেটওয়ে চেক
         if (localStorage.getItem('isAdminAuthenticated') !== 'true') {
             window.location.href = 'login.html';
         }
 
         document.addEventListener("DOMContentLoaded", function() {
-            const defaultProfile = {
-                name: "MD. ZIKRUL HOSSEN ZARIR",
-                email: "zarirhossen45@gmail.com",
-                education: "National Institute of Textile Engineering and Research (NITER)",
-                bio: "Engineering student enrolled at NITER, actively engaging with advanced Electrical Circuit Analysis techniques, Computer Programming architectures, and experimental scientific models. Dedicated to exploring modern structural systems and hardware solutions.",
-                github: "https://github.com/zarirhossen45-max",
-                image: "https://avatars.githubusercontent.com/u/190367202?v=4"
-            };
+            renderDevices();
 
-            const data = JSON.parse(localStorage.getItem('userProfileData')) || defaultProfile;
-
-            // ফর্ম ফিল্ডে পুরানো ডাটা লোড করা
-            document.getElementById('cfgName').value = data.name;
-            document.getElementById('cfgEmail').value = data.email;
-            document.getElementById('cfgEdu').value = data.education;
-            document.getElementById('cfgBio').value = data.bio;
-            document.getElementById('cfgGithub').value = data.github;
-            document.getElementById('cfgImage').value = data.image;
-
-            // ডাটা সেভ ইঞ্জিন
-            document.getElementById('profileStateConfigForm').addEventListener('submit', function(e) {
+            // ফর্ম সাবমিট ও লোকাল স্টোরেজ পুশ
+            document.getElementById('deviceConfigForm').addEventListener('submit', function(e) {
                 e.preventDefault();
-                const updatedData = {
-                    name: document.getElementById('cfgName').value,
-                    email: document.getElementById('cfgEmail').value,
-                    education: document.getElementById('cfgEdu').value,
-                    bio: document.getElementById('cfgBio').value,
-                    github: document.getElementById('cfgGithub').value,
-                    image: document.getElementById('cfgImage').value || defaultProfile.image
+                
+                const newDevice = {
+                    id: Date.now(),
+                    name: document.getElementById('devName').value,
+                    tag: document.getElementById('devTag').value,
+                    desc: document.getElementById('devDesc').value,
+                    image: document.getElementById('devImage').value
                 };
 
-                localStorage.setItem('userProfileData', JSON.stringify(updatedData));
+                let devices = JSON.parse(localStorage.getItem('electroDevices')) || [];
+                devices.push(newDevice);
+                localStorage.setItem('electroDevices', JSON.stringify(devices));
+
+                document.getElementById('deviceConfigForm').reset();
+                
                 const alertNode = document.getElementById('saveSuccessAlert');
                 alertNode.classList.remove('d-none');
-                setTimeout(() => alertNode.classList.add('d-none'), 4000);
+                setTimeout(() => alertNode.classList.add('d-none'), 3000);
+
+                renderDevices();
             });
         });
+
+        // টেবিল রেন্ডার এবং কাউন্টার ইঞ্জিন
+        function renderDevices() {
+            const devices = JSON.parse(localStorage.getItem('electroDevices')) || [];
+            document.getElementById('deviceCount').innerText = devices.length;
+            
+            const tbody = document.getElementById('deviceTableBody');
+            tbody.innerHTML = '';
+
+            if(devices.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="text-center text-muted py-3">No hardware devices registered yet.</td></tr>`;
+                return;
+            }
+
+            devices.forEach(dev => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><img src="${dev.image}" style="width: 45px; height: 45px; object-fit: cover; border-radius: 6px; border: 1px solid #334155;"></td>
+                    <td class="fw-bold text-white">${dev.name}</td>
+                    <td><span class="badge bg-secondary text-info">${dev.tag}</span></td>
+                    <td><button onclick="deleteDevice(${dev.id})" class="btn btn-sm btn-link text-danger p-0"><i class="fa-solid fa-trash"></i></button></td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // ডিভাইস ডিলিট মেকানিজম
+        function deleteDevice(id) {
+            let devices = JSON.parse(localStorage.getItem('electroDevices')) || [];
+            devices = devices.filter(d => d.id !== id);
+            localStorage.setItem('electroDevices', JSON.stringify(devices));
+            renderDevices();
+        }
 
         function logoutEngine() {
             localStorage.removeItem('isAdminAuthenticated');
