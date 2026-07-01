@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroVerse - Secure Admin Verification Gateway</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light-subtle d-flex align-items-center min-vh-100">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="text-center mb-4">
+                    <a href="index.html" class="h2 text-decoration-none fw-bold text-body"><i class="fa-solid fa-microchip text-primary me-2"></i>ElectroVerse</a>
+                </div>
+                <div class="card glass-card border-0 p-4 shadow rounded-4">
+                    <h3 class="fw-bold mb-3 text-center">Admin Access Gateway</h3>
+                    <form id="adminLoginForm" onsubmit="executeAdminLogin(event)">
+                        <div class="mb-3">
+                            <label class="form-label">Username Descriptor</label>
+                            <input type="text" id="loginUser" class="form-control" placeholder="Default: admin" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Secure Access Key Pass token</label>
+                            <input type="password" id="loginPass" class="form-control" placeholder="Default: admin123" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember Authentication Token</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 py-2">Initialize Credentials</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function executeAdminLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('loginUser').value.trim();
+            const p = document.getElementById('loginPass').value.trim();
+            
+            if(u === 'admin' && p === 'admin123') {
+                localStorage.setItem('adminSessionActive', 'true');
+                window.location.href = 'dashboard.html';
+            } else {
+                alert('Invalid operational signature input credentials.');
+            }
+        }
+    </script>
+</body>
+</html>
+
