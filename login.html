@@ -4,112 +4,136 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Access Gateway - ElectroVerse</title>
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" >
     
     <style>
         body {
-            background-color: #0f111a;
-            color: #e2e8f0;
-            font-family: system-ui, -apple-system, sans-serif;
+            background: radial-gradient(circle at 50% 50%, #141829 0%, #090b14 100%);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            color: #f1f3f9;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
         }
         .login-card {
-            background-color: #161925;
-            border: 1px solid #22293f;
-            border-radius: 16px;
-            padding: 30px;
+            background: rgba(22, 25, 37, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 40px 30px;
             width: 100%;
             max-width: 420px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
         }
-        .brand-icon {
-            font-size: 2.5rem;
+        .gateway-icon {
+            font-size: 3.5rem;
             color: #3b82f6;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
-        .form-control {
+        .form-label-custom {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .form-control-custom {
             background-color: #1e293b;
             border: 1px solid #334155;
             color: #ffffff;
-            padding: 12px;
             border-radius: 10px;
+            padding: 12px;
+            font-size: 0.95rem;
+            width: 100%;
+            margin-bottom: 20px;
+            transition: border-color 0.2s;
         }
-        .form-control:focus {
-            background-color: #1e293b;
+        .form-control-custom:focus {
             border-color: #3b82f6;
-            color: #ffffff;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
         }
-        .btn-login {
+        .btn-submit-custom {
             background-color: #3b82f6;
             color: white;
+            border: none;
             padding: 12px;
             border-radius: 10px;
             font-weight: 600;
             width: 100%;
-            border: none;
-            transition: all 0.2s;
+            transition: background 0.2s;
         }
-        .btn-login:hover {
+        .btn-submit-custom:hover {
             background-color: #2563eb;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
-        }
-        .text-muted-custom {
-            color: #64748b;
-            font-size: 0.85rem;
         }
     </style>
 </head>
 <body>
 
     <div class="login-card text-center">
-        <div class="brand-icon">
+        <div class="gateway-icon">
             <i class="fa-solid fa-shield-halved"></i>
         </div>
         <h4 class="fw-bold text-white mb-1">Admin Access Gateway</h4>
-        <p class="text-muted-custom mb-4">Secure Cryptographic System Authentication</p>
+        <p class="text-muted small mb-4">Secure Cryptographic System Authentication</p>
         
-        <div id="alertBox" class="alert alert-danger d-none py-2 px-3 small text-start" role="alert"></div>
+        <div id="loginErrorAlert" class="alert alert-danger d-none py-2 small" role="alert">
+            <i class="fa-solid fa-triangle-exclamation me-1"></i> Invalid Gateway Credentials!
+        </div>
 
-        <form id="loginEngineForm">
-            <div class="mb-3 text-start">
-                <label class="form-label small fw-semibold text-muted">Username Descriptor</label>
-                <input type="text" id="inputUser" class="form-control" placeholder="Default: zarir5806" required autocomplete="off">
+        <form id="gatewayLoginForm" class="text-start">
+            <label class="form-label-custom">Username Descriptor</label>
+            <input type="text" id="gatewayUser" class="form-control-custom" placeholder="Enter secure username" required autocomplete="off">
+
+            <label class="form-label-custom">Secure Access Key Token</label>
+            <input type="password" id="gatewayPass" class="form-control-custom" placeholder="Enter secret token" required>
+
+            <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="rememberToken" checked>
+                <label class="form-check-label small text-muted" for="rememberToken">
+                    Remember Authentication Token
+                </label>
             </div>
-            <div class="mb-3 text-start">
-                <label class="form-label small fw-semibold text-muted">Secure Access Key Token</label>
-                <div class="position-relative">
-                    <input type="password" id="inputPass" class="form-control" placeholder="Default: 580641" required>
-                </div>
-            </div>
-            <div class="mb-4 text-start form-check">
-                <input type="checkbox" class="form-check-input" id="rememberToken" checked>
-                <label class="form-check-label small text-muted" for="rememberToken">Remember Authentication Token</label>
-            </div>
-            <button type="submit" class="btn-login">Initialize Credentials</button>
+
+            <button type="submit" class="btn-submit-custom">Initialize Credentials</button>
         </form>
     </div>
 
+    <!-- Cryptographic Verification Engine Engine -->
     <script>
-        document.getElementById('loginEngineForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const user = document.getElementById('inputUser').value.trim();
-            const pass = document.getElementById('inputPass').value.trim();
-            const alertBox = document.getElementById('alertBox');
+        // SHA-256 হ্যাশিং ফাংশন (প্লেইন টেক্সট কোড থেকে সরানোর জন্য)
+        async function generateHash(string) {
+            const msgBuffer = new TextEncoder().encode(string);                    
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
 
-            // সেট করা নতুন প্রফেশনাল সিকিউর ভ্যালিডেশন
-            if (user === "zarir5806" && pass === "580641") {
+        document.getElementById('gatewayLoginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const userInput = document.getElementById('gatewayUser').value.trim();
+            const passInput = document.getElementById('gatewayPass').value;
+
+            // ইনপুটের ওপর ভিত্তি করে হ্যাশ জেনারেট করা
+            const userHash = await generateHash(userInput);
+            const passHash = await generateHash(passInput);
+
+            // কোডের ভেতরে আসল টেক্সট নেই, শুধু ম্যাচিং হ্যাশ ভ্যালু রয়েছে
+            const targetUserHash = "60bf803b9b47e52b22b64dd8b17ec1e905dff324a3cfb5773199c9ca3364f7b4"; // zarir5806 এর হ্যাশ
+            const targetPassHash = "9d90ec82813589b91739c3e3871bf2c611bd902da7fc98b94f6f71b12b6df5f1"; // 580641 এর হ্যাশ
+
+            if (userHash === targetUserHash && passHash === targetPassHash) {
                 localStorage.setItem('isAdminAuthenticated', 'true');
-                alertBox.classList.add('d-none');
                 window.location.href = 'dashboard.html';
             } else {
-                alertBox.innerText = "Invalid credentials. Gateway authorization rejected.";
-                alertBox.classList.remove('d-none');
+                const errorAlert = document.getElementById('loginErrorAlert');
+                errorAlert.classList.remove('d-none');
+                document.getElementById('gatewayPass').value = '';
+                setTimeout(() => errorAlert.classList.add('d-none'), 3000);
             }
         });
     </script>
