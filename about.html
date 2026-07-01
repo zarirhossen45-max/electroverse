@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroVerse - Platform Architects Metadata Node</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container py-5 mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center mb-4">
+                <a href="index.html" class="btn btn-outline-secondary btn-sm rounded-pill mb-3"><i class="fa-solid fa-arrow-left me-2"></i>Return to Hub Matrix</a>
+            </div>
+            <div class="col-md-8 glass-card p-5 rounded-4 shadow">
+                <div class="mb-4"><i class="fa-solid fa-circle-user text-primary" style="font-size: 100px;"></i></div>
+                <h2 class="fw-bold mb-2" id="vName">...</h2>
+                <p class="text-primary fw-semibold mb-3" id="vEdu">...</p>
+                <hr class="my-4">
+                <h5 class="fw-bold text-start"><i class="fa-solid fa-address-card me-2 text-secondary"></i>Architect Summary Narrative</h5>
+                <p class="text-muted text-start mb-4" id="vBio">...</p>
+                
+                <h5 class="fw-bold text-start"><i class="fa-solid fa-screwdriver-wrench me-2 text-secondary"></i>Core Engineering Proficiencies Matrix</h5>
+                <div class="text-start mb-4" id="vSkills"></div>
+
+                <h5 class="fw-bold text-start"><i class="fa-solid fa-atom me-2 text-secondary"></i>Specialized Domain Deep-Dive Focus Arenas</h5>
+                <div class="text-start mb-4" id="vInterests"></div>
+
+                <hr class="my-4">
+                <div class="d-flex justify-content-center gap-3 fs-3" id="vSocials">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const data = JSON.parse(localStorage.getItem('profileData'));
+            if(!data) return;
+
+            document.getElementById('vName').innerText = data.fullName;
+            document.getElementById('vEdu').innerText = data.education;
+            document.getElementById('vBio').innerText = data.bio;
+
+            document.getElementById('vSkills').innerHTML = data.skills.split(',').map(s => 
+                `<span class="badge bg-primary me-2 mb-2 p-2">${s.trim()}</span>`
+            ).join('');
+
+            document.getElementById('vInterests').innerHTML = data.interests.split(',').map(i => 
+                `<span class="badge bg-dark me-2 mb-2 p-2">${i.trim()}</span>`
+            ).join('');
+
+            document.getElementById('vSocials').innerHTML = `
+                <a href="mailto:${data.email}" class="text-danger"><i class="fa-solid fa-envelope"></i></a>
+                <a href="${data.github}" target="_blank" class="text-body"><i class="fa-brands fa-github"></i></a>
+                <a href="${data.linkedin}" target="_blank" class="text-primary"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="${data.website}" target="_blank" class="text-success"><i class="fa-solid fa-globe"></i></a>
+            `;
+        });
+    </script>
+</body>
+</html>
