@@ -3,44 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElectroVerse Portal - Home</title>
+    <title>ElectroVerse - Electronics & Hardware Hub</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body { background-color: #0f111a; color: #e2e8f0; font-family: system-ui, sans-serif; padding-top: 80px; }
-        .custom-nav { background-color: #161925; border-bottom: 1px solid #22293f; }
+        /* সাইবারনেটিক ডার্ক গ্রাডিয়েন্ট ব্যাকগ্রাউন্ড */
+        body { 
+            background: radial-gradient(circle at 50% 50%, #141829 0%, #090b14 100%);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: #f1f3f9;
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+
+        /* প্রিমিয়াম টপ বার */
+        .glass-nav {
+            background: rgba(9, 11, 20, 0.85) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
         .navbar-brand { color: #3b82f6 !important; font-weight: bold; }
-        .nav-link { color: #94a3b8 !important; }
-        .nav-link.active { color: #ffffff !important; }
-        
-        /* মডার্ন ডিভাইস কার্ড লাউঞ্জ */
+        .nav-link { color: #94a3b8 !important; transition: color 0.2s; }
+        .nav-link:hover, .nav-link.active { color: #ffffff !important; }
+
+        /* গ্লোয়িং হিরো সেকশন */
+        .hero-section {
+            padding: 80px 0 40px 0;
+            text-align: center;
+        }
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #3b82f6, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        /* স্টাইলিশ গ্লাস-মরফিজম ডিভাইস কার্ড */
         .device-card {
-            background-color: #161925;
-            border: 1px solid #22293f;
-            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
             overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s;
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
         }
         .device-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.3);
         }
-        .device-img { width: 100%; height: 180px; object-fit: cover; border-bottom: 1px solid #22293f; }
-        .device-tag { font-size: 0.75rem; background-color: #1e293b; color: #3b82f6; padding: 4px 10px; border-radius: 20px; font-weight: 600; }
+
+        /* ইমেজ কন্টেইনার ফিক্স */
+        .img-box {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background-color: #161925;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .device-img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: transform 0.5s ease;
+        }
+        .device-card:hover .device-img {
+            transform: scale(1.05);
+        }
+
+        /* টেক ট্যাগ ও ব্যাজ */
+        .device-tag { 
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.15); 
+            color: #60a5fa; 
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-title-custom {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-top: 12px;
+        }
+
+        .card-desc-custom {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Top Navigation Bar -->
-    <nav class="navbar navbar-expand-lg fixed-top custom-nav navbar-dark">
+    <nav class="navbar navbar-expand-lg fixed-top glass-nav navbar-dark shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="index.html"><i class="fa-solid fa-microchip me-2"></i>ElectroVerse</a>
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fa-solid fa-microchip text-primary me-2"></i>ElectroVerse
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active fw-bold text-primary" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About Me</a></li>
                     <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
                 </ul>
@@ -48,48 +124,52 @@
         </div>
     </nav>
 
-    <!-- Main Dynamic Cards Section -->
-    <div class="container my-5">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold text-white">Electronics Devices & Hardware Components</h2>
-            <p class="text-muted">Explore dynamic architectural systems and modern hardware solutions deployed live.</p>
-        </div>
+    <header class="container hero-section" style="margin-top: 80px;">
+        <h1 class="hero-title">Hardware Components Showcase</h1>
+        <p class="text-muted col-lg-6 mx-auto">Explore dynamic architectural systems, experimental circuit boards, and engineering hardware modules managed in real-time.</p>
+    </header>
 
-        <!-- এই রো (Row) এর ভেতরে ড্যাশবোর্ডের ডিভাইসগুলো স্বয়ংক্রিয়ভাবে লোড হবে -->
+    <main class="container mb-5">
         <div class="row g-4" id="homeDeviceShowcase">
-            <!-- Dynamic Injection Via LocalStorage -->
-        </div>
-    </div>
+            </div>
+    </main>
 
-    <!-- Live Showcase Script Engine -->
+    <footer class="py-4 text-center border-top border-secondary border-opacity-10 mt-5">
+        <p class="mb-0 small text-muted">ElectroVerse Core © 2026. Premium Responsive Cyber Dark Shell Configured.</p>
+    </footer>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const showcase = document.getElementById('homeDeviceShowcase');
             const devices = JSON.parse(localStorage.getItem('electroDevices')) || [];
 
+            // যদি ড্যাশবোর্ডে কোনো ডেটা না থাকে, তবে একটি সুন্দর ডিফল্ট প্রফেশনাল কার্ড দেখাবে
             if(devices.length === 0) {
                 showcase.innerHTML = `
                     <div class="col-12 text-center py-5">
-                        <i class="fa-solid fa-circle-info text-muted fs-1 mb-3"></i>
-                        <p class="text-muted">No electronics components currently published in the catalog dashboard.</p>
+                        <div class="p-4 rounded-4" style="background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.1);">
+                            <i class="fa-solid fa-square-rss text-muted fs-1 mb-3"></i>
+                            <p class="text-muted mb-0">No hardware components published. Please log into the Dashboard to initialize the matrix catalog.</p>
+                        </div>
                     </div>`;
                 return;
             }
 
-            showcase.innerHTML = ''; // ক্লিয়ার ডিফল্ট মেসেজ
+            showcase.innerHTML = ''; // ডিফল্ট নোড ক্লিয়ার করা
             
+            // লুপের মাধ্যমে ড্যাশবোর্ডের ডিভাইসগুলো জেনারেট করা
             devices.forEach(dev => {
                 const cardCol = document.createElement('div');
                 cardCol.className = "col-12 col-md-6 col-lg-4";
                 cardCol.innerHTML = `
-                    <div class="device-card h-100 shadow-sm">
-                        <img src="${dev.image}" class="device-img" alt="${dev.name}">
-                        <div class="p-3">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="device-tag">${dev.tag}</span>
-                            </div>
-                            <h5 class="fw-bold text-white mb-2">${dev.name}</h5>
-                            <p class="text-muted small mb-0" style="line-height: 1.6;">${dev.desc}</p>
+                    <div class="device-card shadow-sm">
+                        <div class="img-box">
+                            <img src="${dev.image}" class="device-img" alt="${dev.name}" onerror="this.src='https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&q=80&w=600'">
+                        </div>
+                        <div class="p-4">
+                            <span class="device-tag"><i class="fa-solid fa-microchip me-1"></i>${dev.tag}</span>
+                            <h5 class="card-title-custom">${dev.name}</h5>
+                            <p class="card-desc-custom mb-0 mt-2">${dev.desc}</p>
                         </div>
                     </div>
                 `;
@@ -97,5 +177,6 @@
             });
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
